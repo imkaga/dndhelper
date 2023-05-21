@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 
@@ -16,11 +17,13 @@ namespace dndhelper.Models
         }
 
         // właściwości
+        [HiddenInput(DisplayValue = false)]
+        public string UserId { get; set; }
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
-        public RaceEnum Race { get; set; }
+        public RaceEnum? Race { get; set; }
         [Range(2, 10)]
         public int Strength { get; set; }
         [Range(2, 10)]
