@@ -1,0 +1,105 @@
+﻿@model dndhelper.Models.CharacterGenerator
+
+@{
+    ViewData["Title"] = "Character Generator";
+}
+
+<h1>Character Generator</h1>
+
+@using (Html.BeginForm("Create", "CharacterGenerators", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Race)
+        @Html.DropDownListFor(model => model.Race, Enum.GetValues(typeof(dndhelper.Models.CharacterGenerator.RaceEnum)).Cast<dndhelper.Models.CharacterGenerator.RaceEnum>().Select(e => new SelectListItem { Text = e.ToString(), Value = ((int)e).ToString() }), "- Select Race -", new { @class = "form-control", onchange = "displayRaceImage()" })
+        @Html.ValidationMessageFor(model => model.Race, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Strength)
+        @Html.TextBoxFor(model => model.Strength, new { @class = "form-control", oninput = "calculateRemainingPoints()" })
+        @Html.ValidationMessageFor(model => model.Strength, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Dexterity)
+        @Html.TextBoxFor(model => model.Dexterity, new { @class = "form-control", oninput = "calculateRemainingPoints()" })
+        @Html.ValidationMessageFor(model => model.Dexterity, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Intelligence)
+        @Html.TextBoxFor(model => model.Intelligence, new { @class = "form-control", oninput = "calculateRemainingPoints()" })
+        @Html.ValidationMessageFor(model => model.Intelligence, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Luck)
+        @Html.TextBoxFor(model => model.Luck, new { @class = "form-control", oninput = "calculateRemainingPoints()" })
+        @Html.ValidationMessageFor(model => model.Luck, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Remaining Points:")
+        <span id="remainingPoints" class="text-success">25</span>
+    </div>
+
+    <div id="raceImageContainer" class="form-group">
+        <img id="raceImage" src="" alt="Race Image" />
+    </div>
+
+    <input type="submit" value="Create" class="btn btn-primary" onclick="return validatePoints()" />
+}
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        function calculateRemainingPoints() {
+            var strength = parseInt(document.getElementById('Strength').value) || 0;
+            var dexterity = parseInt(document.getElementById('Dexterity').value) || 0;
+            var intelligence = parseInt(document.getElementById('Intelligence').value) || 0;
+            var luck = parseInt(document.getElementById('Luck').value) || 0;
+            var totalPoints = strength + dexterity + intelligence + luck;
+            var remainingPoints = 25 - totalPoints;
+            document.getElementById('remainingPoints').textContent = remainingPoints;
+        }
+
+        function validatePoints() {
+            var remainingPoints = parseInt(document.getElementById('remainingPoints').textContent) || 0;
+            if (remainingPoints !== 0) {
+                alert('Please allocate all 25 points.');
+                return false;
+            }
+            return true;
+        }
+    </script>
+    <script>
+        function displayRaceImage() {
+            var raceSelect = document.getElementById('Race');
+            var raceValue = raceSelect.options[raceSelect.selectedIndex].value;
+            var raceImage = document.getElementById('raceImage');
+
+            if (raceValue === "0") {
+                raceImage.src = "/images/Characters/human.png";
+            } else if (raceValue === "1") {
+                raceImage.src = "/images/Characters/elf.jpg";
+            } else if (raceValue === "2") {
+                raceImage.src = "/images/Characters/dwarf.png";
+            } else if (raceValue === "3") {
+                raceImage.src = "/images/Characters/orc.jpg";
+            } else {
+                raceImage.src = "/images/Characters/none.png";
+            }
+        }
+        displayRaceImage();
+    </script>
+}

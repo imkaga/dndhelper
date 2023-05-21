@@ -1,0 +1,52 @@
+﻿@model dndhelper.Models.CharacterGenerator
+
+@{
+    ViewData["Title"] = "Character Detail";
+}
+
+<h1>Character Details</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <dl class="row">
+            <dt class="col-sm-4">Name:</dt>
+            <dd class="col-sm-8">@Model.Name</dd>
+
+            <dt class="col-sm-4">Race:</dt>
+            <dd class="col-sm-8">@Model.Race.ToString()</dd>
+
+            <dt class="col-sm-4">Strength:</dt>
+            <dd class="col-sm-8">@Model.Strength</dd>
+
+            <dt class="col-sm-4">Dexterity:</dt>
+            <dd class="col-sm-8">@Model.Dexterity</dd>
+
+            <dt class="col-sm-4">Intelligence:</dt>
+            <dd class="col-sm-8">@Model.Intelligence</dd>
+        </dl>
+    </div>
+    <div class="col-md-6">
+        <img src="@Url.Content("~/images/Characters/" + GetRaceImage(Model.Race))" alt="Race Image" />
+    </div>
+</div>
+
+<a asp-action="Index">Back to List</a>
+
+@functions {
+    public string GetRaceImage(dndhelper.Models.CharacterGenerator.RaceEnum race)
+    {
+        switch (race)
+        {
+            case dndhelper.Models.CharacterGenerator.RaceEnum.Human:
+                return "human.png";
+            case dndhelper.Models.CharacterGenerator.RaceEnum.Elf:
+                return "elf.jpg";
+            case dndhelper.Models.CharacterGenerator.RaceEnum.Dwarf:
+                return "dwarf.png";
+            case dndhelper.Models.CharacterGenerator.RaceEnum.Orc:
+                return "orc.jpg";
+            default:
+                return "none.png";
+        }
+    }
+}

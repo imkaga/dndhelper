@@ -15,5 +15,8 @@ namespace dndhelper.Data
         }
 
         public DbSet<dndhelper.Models.DiceModel> DiceModel { get; set; } = default!;
+
+        public DbSet<dndhelper.Models.CharacterGenerator>? CharacterGenerator { get; set; }
+
     }
 }
