@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 
@@ -16,6 +17,8 @@ namespace dndhelper.Models
         }
 
         // właściwości
+        [HiddenInput(DisplayValue = false)]
+        public string UserId { get; set; }
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }

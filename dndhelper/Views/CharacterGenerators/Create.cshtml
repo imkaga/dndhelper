@@ -9,6 +9,12 @@
 @using (Html.BeginForm("Create", "CharacterGenerators", FormMethod.Post))
 {
     <div class="form-group">
+        @Html.LabelFor(model => model.UserId)
+        @Html.TextBoxFor(model => model.UserId, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
         @Html.LabelFor(model => model.Name)
         @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
