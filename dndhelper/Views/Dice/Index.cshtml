@@ -1,0 +1,39 @@
+﻿@model dndhelper.Models.DiceModel
+@{
+    ViewData["Title"] = "Roll Dice";
+}
+
+<h1>Roll Dice</h1>
+
+<form method="post" asp-action="RollDice">
+    <div class="form-group">
+        <label for="selectedDice">Select a dice:</label>
+        <select id="selectedDice" name="selectedDice" asp-for="SelectedDice" class="form-control">
+            <option value="4" selected="@(Model.SelectedDice == (DiceType)4)">D4</option>
+            <option value="6" selected="@(Model.SelectedDice == (DiceType)6)">D6</option>
+            <option value="8" selected="@(Model.SelectedDice == (DiceType)8)">D8</option>
+            <option value="10" selected="@(Model.SelectedDice == (DiceType)10)">D10</option>
+            <option value="12" selected="@(Model.SelectedDice == (DiceType)12)">D12</option>
+            <option value="20" selected="@(Model.SelectedDice == (DiceType)20)">D20</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Roll</button>
+</form>
+
+@if (Model.RandomNumber != 0)
+{
+    <div class="result">
+        <div class="result-text">You rolled: @Model.RandomNumber</div>
+        <div class="dice-image">
+            @if (Model.RandomNumber <= (int)Model.SelectedDice)
+            {
+                <img src="@Url.Content("~/images/dice/d" + (int)Model.SelectedDice + "_" + Model.RandomNumber + ".png")" alt="Dice Image" />
+            }
+            else
+            {
+                <img src="@Url.Content("~/images/dice/d" + (int)Model.SelectedDice + ".png")" alt="Dice Image" />
+            }
+            <div id="randomNumber" class="dice-number"></div>
+        </div>
+    </div>
+}
