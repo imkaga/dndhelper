@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using dndhelper.Data;
 
@@ -11,9 +12,10 @@ using dndhelper.Data;
 namespace dndhelper.Migrations
 {
     [DbContext(typeof(dndhelperContext))]
-    partial class dndhelperContextModelSnapshot : ModelSnapshot
+    [Migration("20230523171006_10")]
+    partial class _10
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

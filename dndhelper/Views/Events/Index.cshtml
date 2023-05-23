@@ -1,0 +1,31 @@
+﻿@model List<dndhelper.Models.Event>
+
+<h1>@ViewBag.CampaignName - Events</h1>
+
+<p>
+    @Html.ActionLink("Create New Event", "Create", new { campaignId = ViewBag.CampaignId })
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Strength</th>
+            <th>Dexterity</th>
+            <th>Intelligence</th>
+            <th>Luck</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Strength</td>
+                <td>@item.Dexterity</td>
+                <td>@item.Intelligence</td>
+                <td>@item.Luck</td>
+            </tr>
+        }
+    </tbody>
+</table>

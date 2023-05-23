@@ -35,5 +35,9 @@ namespace dndhelper.Data
 
             base.OnModelCreating(modelBuilder);
         }
+
+        public DbSet<dndhelper.Models.Event>? Event { get; set; }
+
+        public DbSet<dndhelper.Models.Campaign>? Campaign { get; set; }
     }
 }

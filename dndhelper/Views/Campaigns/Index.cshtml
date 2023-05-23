@@ -1,0 +1,27 @@
+﻿@model List<dndhelper.Models.Campaign>
+
+<h1>Campaigns</h1>
+
+<p>
+    @Html.ActionLink("Create New Campaign", "Create")
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var campaign in Model)
+        {
+            <tr>
+                <td>@campaign.Name</td>
+                <td>
+                    @Html.ActionLink("View Events", "Index", "Events", new { campaignId = campaign.Id, campaignName = campaign.Name }, null)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
