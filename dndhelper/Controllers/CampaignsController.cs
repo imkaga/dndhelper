@@ -43,18 +43,25 @@ namespace dndhelper.Controllers
         // POST: Campaigns/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,Name")] Campaign campaign)
+        public IActionResult Create([Bind("Id,Name,UserId")] Campaign campaign)
         {
             if (ModelState.IsValid)
             {
-                // Pobierz identyfikator użytkownika
                 var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
-
                 campaign.UserId = userId;
 
-                _context.Add(campaign);
-                _context.SaveChanges();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    _context.Add(campaign);
+                    _context.SaveChanges();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception e)
+                {
+                    // Obsługa błędów
+                    // Miałem z tym problem bo zapomniałem dodać automatycznego uzupełniania UserId i stwierdziłem że zostawie
+                    ModelState.AddModelError("", "Wystąpił błąd podczas tworzenia kampanii: " + e.Message);
+                }
             }
 
             return View(campaign);
@@ -101,7 +108,7 @@ namespace dndhelper.Controllers
         // POST: Campaigns/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Campaign campaign)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,UserId")] Campaign campaign)
         {
             if (id != campaign.Id)
             {
@@ -114,6 +121,7 @@ namespace dndhelper.Controllers
                 {
                     _context.Update(campaign);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -126,7 +134,12 @@ namespace dndhelper.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                catch (Exception e)
+                {
+                    // Obsługa błędów
+                    // Możesz dodać odpowiednie logowanie lub inny kod obsługi błędów
+                    ModelState.AddModelError("", "Wystąpił błąd podczas edycji kampanii: " + e.Message);
+                }
             }
             return View(campaign);
         }

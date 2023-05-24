@@ -33,6 +33,9 @@
                 <span asp-validation-for="Intelligence" class="text-danger"></span>
             </div>
             <div class="form-group">
+                @Html.HiddenFor(model => model.UserId)
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>

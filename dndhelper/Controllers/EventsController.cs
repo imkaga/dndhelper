@@ -21,7 +21,6 @@ namespace dndhelper.Controllers
         }
 
         // GET: Events/Index
-        // GET: Events/Index
         public IActionResult Index(int campaignId, string campaignName)
         {
             ViewBag.CampaignId = campaignId;
@@ -31,7 +30,6 @@ namespace dndhelper.Controllers
 
             return View(events);
         }
-
 
         // GET: Events/Create
         public IActionResult Create(int campaignId)
@@ -50,7 +48,8 @@ namespace dndhelper.Controllers
                 Strength = GetRandomStatValue(),
                 Dexterity = GetRandomStatValue(),
                 Intelligence = GetRandomStatValue(),
-                Luck = GetRandomStatValue()
+                Luck = GetRandomStatValue(),
+                UserId = userId
             };
 
             return View(@event);
@@ -58,8 +57,8 @@ namespace dndhelper.Controllers
 
         // POST: Events/Create
         [HttpPost]
-     
-        public IActionResult Create([Bind("Id,Name,Strength,Dexterity,Intelligence,Luck,CampaignId")] Event @event)
+        [ValidateAntiForgeryToken]
+        public IActionResult Create([Bind("Id,Name,Strength,Dexterity,Intelligence,Luck,CampaignId,UserId")] Event @event)
         {
             if (ModelState.IsValid)
             {
