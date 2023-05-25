@@ -110,6 +110,12 @@ namespace dndhelper.Controllers
                 return NotFound();
             }
 
+            var campaign = await _context.Campaign.FirstOrDefaultAsync(c => c.Id == @event.CampaignId);
+            if (campaign != null)
+            {
+                ViewBag.CampaignName = campaign.Name;
+            }
+
             return View(@event);
         }
 
@@ -127,6 +133,12 @@ namespace dndhelper.Controllers
                 return NotFound();
             }
 
+            var campaign = await _context.Campaign.FirstOrDefaultAsync(c => c.Id == @event.CampaignId);
+            if (campaign != null)
+            {
+                ViewBag.CampaignName = campaign.Name;
+            }
+
             return View(@event);
         }
 
@@ -136,10 +148,22 @@ namespace dndhelper.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var @event = await _context.Event.FindAsync(id);
-            _context.Event.Remove(@event);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index", new { campaignId = @event.CampaignId });
+            if (@event == null)
+            {
+                return NotFound();
+            }
+
+            var campaign = _context.Campaign.FirstOrDefault(c => c.Id == @event.CampaignId);
+            if (campaign != null)
+            {
+                _context.Event.Remove(@event);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Events", new { campaignId = @event.CampaignId, campaignName = campaign.Name });
+            }
+
+            return RedirectToAction("Index");
         }
+
 
 
         private int GetRandomStatValue()

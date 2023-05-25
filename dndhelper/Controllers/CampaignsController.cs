@@ -27,6 +27,13 @@ namespace dndhelper.Controllers
             var campaigns = _context.Campaign.Where(c => c.UserId == userId).ToList();
             return View(campaigns);
         }
+        // Metoda sprawdzająca czy nazwa kampanii się nie powtarza
+        [AcceptVerbs("GET", "POST")]
+        public IActionResult IsCampaignNameUnique(string name)
+        {
+            var isUnique = !_context.Campaign.Any(c => c.Name == name);
+            return Json(isUnique);
+        }
 
         // GET: Campaigns/Create
         public IActionResult Create(int campaignId)
