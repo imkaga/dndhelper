@@ -11,6 +11,7 @@
         <tr>
             <th>Name</th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -20,6 +21,11 @@
                 <td>@campaign.Name</td>
                 <td>
                     @Html.ActionLink("View Events", "Index", "Events", new { campaignId = campaign.Id, campaignName = campaign.Name }, null)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@campaign.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@campaign.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@campaign.Id">Delete</a>
                 </td>
             </tr>
         }

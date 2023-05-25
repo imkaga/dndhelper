@@ -11,5 +11,6 @@ namespace dndhelper.Models
 
         [Required]
         public string UserId { get; set; }
+        public int CampaignId { get; set; }
     }
 }

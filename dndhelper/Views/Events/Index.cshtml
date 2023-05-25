@@ -14,6 +14,7 @@
             <th>Dexterity</th>
             <th>Intelligence</th>
             <th>Luck</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -25,7 +26,12 @@
                 <td>@item.Dexterity</td>
                 <td>@item.Intelligence</td>
                 <td>@item.Luck</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
             </tr>
+       
         }
     </tbody>
 </table>

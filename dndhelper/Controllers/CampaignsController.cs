@@ -29,12 +29,14 @@ namespace dndhelper.Controllers
         }
 
         // GET: Campaigns/Create
-        public IActionResult Create()
+        public IActionResult Create(int campaignId)
         {
             var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+
             var campaign = new Campaign
             {
-                UserId = userId
+                UserId = userId,
+                CampaignId = campaignId
             };
 
             return View(campaign);
@@ -43,29 +45,20 @@ namespace dndhelper.Controllers
         // POST: Campaigns/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,Name,UserId")] Campaign campaign)
+        public IActionResult Create([Bind("Id,Name,UserId,CampaignId")] Campaign campaign)
         {
             if (ModelState.IsValid)
             {
-                var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
-                campaign.UserId = userId;
-
-                try
-                {
-                    _context.Add(campaign);
-                    _context.SaveChanges();
-                    return RedirectToAction(nameof(Index));
-                }
-                catch (Exception e)
-                {
-                    // Obsługa błędów
-                    // Miałem z tym problem bo zapomniałem dodać automatycznego uzupełniania UserId i stwierdziłem że zostawie
-                    ModelState.AddModelError("", "Wystąpił błąd podczas tworzenia kampanii: " + e.Message);
-                }
+                campaign.UserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+                _context.Add(campaign);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
             }
 
             return View(campaign);
         }
+
+
 
         // GET: Campaigns/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -137,7 +130,7 @@ namespace dndhelper.Controllers
                 catch (Exception e)
                 {
                     // Obsługa błędów
-                    // Możesz dodać odpowiednie logowanie lub inny kod obsługi błędów
+                    // Miałem problem z UserId i mimo rozwiązania błędu, stwierdziłem że lepiej zostawić
                     ModelState.AddModelError("", "Wystąpił błąd podczas edycji kampanii: " + e.Message);
                 }
             }

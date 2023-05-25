@@ -26,10 +26,21 @@ namespace dndhelper.Controllers
             ViewBag.CampaignId = campaignId;
             ViewBag.CampaignName = campaignName;
 
-            var events = _context.Event.Where(e => e.CampaignId == campaignId).ToList();
-
-            return View(events);
+            try
+            {
+                var events = _context.Event.Where(e => e.CampaignId == campaignId).ToList();
+                return View(events);
+            }
+            catch (Exception e)
+            {
+                // Handle the exception (e.g., log the error)
+                // You can customize the error handling based on your requirements
+                // Redirect to an error page or display an error message
+                ViewBag.ErrorMessage = "An error occurred while retrieving events.";
+                return View();
+            }
         }
+
 
         // GET: Events/Create
         public IActionResult Create(int campaignId)
@@ -42,39 +53,98 @@ namespace dndhelper.Controllers
                 return NotFound();
             }
 
-            var @event = new Event
+            try
             {
-                CampaignId = campaignId,
-                Strength = GetRandomStatValue(),
-                Dexterity = GetRandomStatValue(),
-                Intelligence = GetRandomStatValue(),
-                Luck = GetRandomStatValue(),
-                UserId = userId
-            };
+                var @event = new Event
+                {
+                    CampaignId = campaignId,
+                    UserId = userId,
+                    Strength = GetRandomStatValue(),
+                    Dexterity = GetRandomStatValue(),
+                    Intelligence = GetRandomStatValue(),
+                    Luck = GetRandomStatValue()
+                };
 
-            return View(@event);
+                return View(@event);
+            }
+            catch (Exception e)
+            {
+                // Handle the exception (e.g., log the error)
+                // You can customize the error handling based on your requirements
+                // Redirect to an error page or display an error message
+                ViewBag.ErrorMessage = "An error occurred while creating the event.";
+                return View();
+            }
         }
 
         // POST: Events/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,Name,Strength,Dexterity,Intelligence,Luck,CampaignId,UserId")] Event @event)
+        public IActionResult Create(Event @event)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(@event);
                 _context.SaveChanges();
-                return RedirectToAction("Index", "Events", new { campaignId = @event.CampaignId });
+
+                var campaign = _context.Campaign.FirstOrDefault(c => c.Id == @event.CampaignId);
+                if (campaign != null)
+                {
+                    return RedirectToAction("Index", "Events", new { campaignId = @event.CampaignId, campaignName = campaign.Name });
+                }
             }
 
             return View(@event);
         }
 
-        // ... reszta kodu ...
+        // GET: Events/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var @event = await _context.Event.FirstOrDefaultAsync(m => m.Id == id);
+            if (@event == null)
+            {
+                return NotFound();
+            }
+
+            return View(@event);
+        }
+
+        // GET: Events/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var @event = await _context.Event.FirstOrDefaultAsync(m => m.Id == id);
+            if (@event == null)
+            {
+                return NotFound();
+            }
+
+            return View(@event);
+        }
+
+        // POST: Events/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var @event = await _context.Event.FindAsync(id);
+            _context.Event.Remove(@event);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", new { campaignId = @event.CampaignId });
+        }
+
 
         private int GetRandomStatValue()
         {
-            // Implementacja losowego generowania wartości statystyki (np. od 1 do 20)
+            // Implementacja losowego generowania wartości statystyki od 1 do 20
             Random random = new Random();
             return random.Next(1, 21);
         }
