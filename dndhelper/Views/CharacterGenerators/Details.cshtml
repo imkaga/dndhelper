@@ -3,7 +3,16 @@
 @{
     ViewData["Title"] = "Character Detail";
 }
-
+<header>
+    <img src="\images\Elementy_strony\Character_generator.jpg" alt"Character_generator - header" />
+</header>
+<h1>Roll Dice</h1>
+<style>
+    header img {
+        width: 100%;
+        display: block;
+    }
+</style>
 <h1>Character Details</h1>
 
 <div class="row">
@@ -38,15 +47,15 @@
         switch (race)
         {
             case dndhelper.Models.CharacterGenerator.RaceEnum.Human:
-                return "human.png";
+                return "Human.jpeg";
             case dndhelper.Models.CharacterGenerator.RaceEnum.Elf:
-                return "elf.jpg";
+                return "Elf.jpeg";
             case dndhelper.Models.CharacterGenerator.RaceEnum.Dwarf:
-                return "dwarf.png";
+                return "Dwarf.jpeg";
             case dndhelper.Models.CharacterGenerator.RaceEnum.Orc:
-                return "orc.jpg";
+                return "Orc.jpeg";
             default:
-                return "none.png";
+                return "none.jpg";
         }
     }
 }

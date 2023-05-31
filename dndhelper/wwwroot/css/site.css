@@ -14,5 +14,12 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    background-color: black;
+    margin-bottom: 60px;
+}
+
+div {
+    width: 100%;
+    text-align: center;
+    color: white;
 }

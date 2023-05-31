@@ -3,7 +3,16 @@
 @{
     ViewData["Title"] = "Character Generator";
 }
-
+<header>
+    <img src="\images\Elementy_strony\Character_generator.jpg" alt"Character_generator - header" />
+</header>
+<h1>Roll Dice</h1>
+<style>
+    header img {
+        width: 100%;
+        display: block;
+    }
+</style>
 <h1>Character Generator</h1>
 
 @using (Html.BeginForm("Create", "CharacterGenerators", FormMethod.Post))
@@ -91,15 +100,15 @@
             var raceImage = document.getElementById('raceImage');
 
             if (raceValue === "0") {
-                raceImage.src = "/images/Characters/human.png";
+                raceImage.src = "\images\Characters\Human.jpeg";
             } else if (raceValue === "1") {
-                raceImage.src = "/images/Characters/elf.jpg";
+                raceImage.src = "\images\Characters\Elf.jpegf.jpg";
             } else if (raceValue === "2") {
-                raceImage.src = "/images/Characters/dwarf.png";
+                raceImage.src = "\images\Characters\Dwarf.jpeg";
             } else if (raceValue === "3") {
-                raceImage.src = "/images/Characters/orc.jpg";
+                raceImage.src = "\images\Characters\Orc.jpeg";
             } else {
-                raceImage.src = "/images/Characters/none.png";
+                raceImage.src = "\images\Characters\none.jpg";
             }
         }
         displayRaceImage();
