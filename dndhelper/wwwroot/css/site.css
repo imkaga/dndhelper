@@ -14,5 +14,27 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    background-color: black;
+    margin-bottom: 60px;
+}
+
+div {
+    width: 100%;
+    text-align: center;
+    color: white;
+}
+
+table, th, td {
+    color: white;
+}
+
+header img {
+    width: 100%;
+    display: block;
+}
+
+form {
+    width: 40%;
+    margin: 0 auto;
+    align-items: center;
 }

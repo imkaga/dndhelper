@@ -3,11 +3,19 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Index</h1>
+<header>
+    <img src="\images\Elementy_strony\Character_generator.jpg" alt"Character_generator - header" />
+</header>
+<style>
+    header img {
+        width: 100%;
+        display: block;
+    }
+</style>
+<h1>Kreator postaci</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Stwórz nową postać</a>
 </p>
 <table class="table">
     <thead>
@@ -55,8 +63,8 @@
                 @Html.DisplayFor(modelItem => item.Luck)
             </td>
             <td>
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Details" asp-route-id="@item.Id">Szczegóły</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Usuń</a>
             </td>
         </tr>
 }

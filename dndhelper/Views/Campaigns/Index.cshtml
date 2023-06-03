@@ -1,15 +1,30 @@
 ﻿@model List<dndhelper.Models.Campaign>
+<header>
+    <img src="\images\Elementy_strony\Campaign.jpg" alt="Campaign - header" />
+</header>
 
-<h1>Campaigns</h1>
+<style>
+    header img {
+        width: 100%;
+        display: block;
+        color: white;
+    }
+
+    table, th, td {
+        color: white;
+    }
+</style>
+
+<h1>Lista twoich kampanii</h1>
 
 <p>
-    @Html.ActionLink("Create New Campaign", "Create")
+    @Html.ActionLink("Stwórz nową kampanię", "Create")
 </p>
 
 <table class="table">
     <thead>
         <tr>
-            <th>Name</th>
+            <th>Nazwa kampanii</th>
             <th></th>
             <th></th>
         </tr>
@@ -20,12 +35,11 @@
             <tr>
                 <td>@campaign.Name</td>
                 <td>
-                    @Html.ActionLink("View Events", "Index", "Events", new { campaignId = campaign.Id, campaignName = campaign.Name }, null)
+                    @Html.ActionLink("Wyświetl wydarzenia", "Index", "Events", new { campaignId = campaign.Id, campaignName = campaign.Name }, null)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@campaign.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@campaign.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@campaign.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@campaign.Id">Edytuj</a> |
+                    <a asp-action="Delete" asp-route-id="@campaign.Id">Usuń</a>
                 </td>
             </tr>
         }

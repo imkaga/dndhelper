@@ -2,12 +2,27 @@
 @{
     ViewData["Title"] = "Roll Dice";
 }
+<header>
+    <img src="\images\Elementy_strony\Roll_a_dice.png" alt"Roll_a_dice - header" />
+</header>
+<h1>Rzuć kością!</h1>
+<style>
+    header img {
+        width: 100%;
+        display: block;
+    }
 
-<h1>Roll Dice</h1>
+    form {
+        margin-top; 40px;
+        width: 25%;
+        margin: 0 auto;
+    }
+
+</style>
 
 <form method="post" asp-action="RollDice">
     <div class="form-group">
-        <label for="selectedDice">Select a dice:</label>
+        <label for="selectedDice">Wybierz kość:</label>
         <select id="selectedDice" name="selectedDice" asp-for="SelectedDice" class="form-control">
             <option value="4" selected="@(Model.SelectedDice == (DiceType)4)">D4</option>
             <option value="6" selected="@(Model.SelectedDice == (DiceType)6)">D6</option>
@@ -17,13 +32,13 @@
             <option value="20" selected="@(Model.SelectedDice == (DiceType)20)">D20</option>
         </select>
     </div>
-    <button type="submit" class="btn btn-primary">Roll</button>
+    <button type="submit" class="btn btn-primary">Rzut kością!</button>
 </form>
 
 @if (Model.RandomNumber != 0)
 {
     <div class="result">
-        <div class="result-text">You rolled: @Model.RandomNumber</div>
+        <div class="result-text">Wyrzuciłeś: @Model.RandomNumber</div>
         <div class="dice-image">
             @if (Model.RandomNumber <= (int)Model.SelectedDice)
             {

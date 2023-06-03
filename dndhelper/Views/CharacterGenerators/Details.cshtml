@@ -3,26 +3,50 @@
 @{
     ViewData["Title"] = "Character Detail";
 }
+<header>
+    <img src="\images\Elementy_strony\Character_generator.jpg" alt="Character_generator - header" />
+</header>
+<style>
+    header img {
+        width: 100%;
+        display: block;
+    }
 
-<h1>Character Details</h1>
+    img {
+        width: 200px;
+    }
+    body {
+        align-items: center;
+    }
+
+    .row {
+        justify-content: center;
+        text-align: left;
+    }
+
+</style>
+<h1>Szczegóły postaci</h1>
 
 <div class="row">
     <div class="col-md-6">
         <dl class="row">
-            <dt class="col-sm-4">Name:</dt>
+            <dt class="col-sm-4">Imię:</dt>
             <dd class="col-sm-8">@Model.Name</dd>
 
-            <dt class="col-sm-4">Race:</dt>
+            <dt class="col-sm-4">Rasa:</dt>
             <dd class="col-sm-8">@Model.Race.ToString()</dd>
 
-            <dt class="col-sm-4">Strength:</dt>
+            <dt class="col-sm-4">Siła:</dt>
             <dd class="col-sm-8">@Model.Strength</dd>
 
-            <dt class="col-sm-4">Dexterity:</dt>
+            <dt class="col-sm-4">Zręczność:</dt>
             <dd class="col-sm-8">@Model.Dexterity</dd>
 
-            <dt class="col-sm-4">Intelligence:</dt>
+            <dt class="col-sm-4">Inteligencja:</dt>
             <dd class="col-sm-8">@Model.Intelligence</dd>
+
+            <dt class="col-sm-4">Szczęście:</dt>
+            <dd class="col-sm-8">@Model.Luck</dd>
         </dl>
     </div>
     <div class="col-md-6">
@@ -30,7 +54,7 @@
     </div>
 </div>
 
-<a asp-action="Index">Back to List</a>
+<a asp-action="Index">Powrót do listy</a>
 
 @functions {
     public string GetRaceImage(dndhelper.Models.CharacterGenerator.RaceEnum race)
@@ -38,15 +62,15 @@
         switch (race)
         {
             case dndhelper.Models.CharacterGenerator.RaceEnum.Human:
-                return "human.png";
+                return "Human.jpeg";
             case dndhelper.Models.CharacterGenerator.RaceEnum.Elf:
-                return "elf.jpg";
+                return "Elf.jpeg";
             case dndhelper.Models.CharacterGenerator.RaceEnum.Dwarf:
-                return "dwarf.png";
+                return "Dwarf.jpeg";
             case dndhelper.Models.CharacterGenerator.RaceEnum.Orc:
-                return "orc.jpg";
+                return "Orc.jpeg";
             default:
-                return "none.png";
+                return "none.jpg";
         }
     }
 }

@@ -3,20 +3,34 @@
 @{
     ViewData["Title"] = "Delete";
 }
+<header>
+    <img src="\images\Elementy_strony\Character_generator.jpg" alt="Character_generator - header" />
+</header>
+<style>
+    header img {
+        width: 100%;
+        display: block;
+    }
+    .tabela {
+        width: 60%;
+        margin: 0 auto;
+        align-items: center;
+        align-content: center;
+        text-align: left;
+    }
 
-<h1>Delete</h1>
+    .row dt,
+    .row dd {
+        flex-basis: 45%;
+        text-align: center;
+    }
+</style>
+<h1>Usuwanie postaci</h1>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>CharacterGenerator</h4>
+<h3>Czy na pewno chcesz usunąć tę postać?</h3>
+<div class="tabela">
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UserId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UserId)
-        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
         </dt>
@@ -57,7 +71,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Usuń" class="btn btn-danger" /> |
+        <a asp-action="Index">Powrót do listy</a>
     </form>
 </div>
