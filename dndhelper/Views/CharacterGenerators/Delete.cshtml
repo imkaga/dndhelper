@@ -4,18 +4,31 @@
     ViewData["Title"] = "Delete";
 }
 <header>
-    <img src="\images\Elementy_strony\Character_generator.jpg" alt"Character_generator - header" />
+    <img src="\images\Elementy_strony\Character_generator.jpg" alt="Character_generator - header" />
 </header>
 <style>
     header img {
         width: 100%;
         display: block;
     }
+    .tabela {
+        width: 60%;
+        margin: 0 auto;
+        align-items: center;
+        align-content: center;
+        text-align: left;
+    }
+
+    .row dt,
+    .row dd {
+        flex-basis: 45%;
+        text-align: center;
+    }
 </style>
 <h1>Usuwanie postaci</h1>
 
 <h3>Czy na pewno chcesz usunąć tę postać?</h3>
-<div>
+<div class="tabela">
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">

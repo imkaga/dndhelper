@@ -1,11 +1,38 @@
 ﻿@model dndhelper.Models.Campaign
-
-<img src="\images\Elementy_strony\Campaign.jpg" alt"Campaign - header" />
+<header> 
+<img src="\images\Elementy_strony\Campaign.jpg" alt="Campaign - header" />
+</header>
 @{
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edytuj kampanie</h1>
+<style>
+    .row {
+        justify-content: center;
+    }
+
+    header img {
+        width: 100%;
+        display: block;
+        color: white;
+    }
+
+    .form-group {
+        text-align: center;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .return {
+        text-align: center;
+        justify-content: center;
+        margin-top: 10px;
+    }
+</style>
+
+
+
+<h1>Edytuj kampanię</h1>
 
 <hr />
 <div class="row">
@@ -25,7 +52,7 @@
     </div>
 </div>
 
-<div>
+<div class="return">
     <a asp-action="Index">Powrót do listy</a>
 </div>
 

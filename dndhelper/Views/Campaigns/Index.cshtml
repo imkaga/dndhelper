@@ -1,6 +1,6 @@
 ﻿@model List<dndhelper.Models.Campaign>
 <header>
-    <img src="\images\Elementy_strony\Character_generator.jpg" alt"Character_generator - header" />
+    <img src="\images\Elementy_strony\Campaign.jpg" alt="Campaign - header" />
 </header>
 
 <style>
@@ -9,7 +9,12 @@
         display: block;
         color: white;
     }
+
+    table, th, td {
+        color: white;
+    }
 </style>
+
 <h1>Lista twoich kampanii</h1>
 
 <p>
@@ -19,7 +24,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Name</th>
+            <th>Nazwa kampanii</th>
             <th></th>
             <th></th>
         </tr>
@@ -34,7 +39,6 @@
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@campaign.Id">Edytuj</a> |
-                    <a asp-action="Details" asp-route-id="@campaign.Id">Szczegóły</a> |
                     <a asp-action="Delete" asp-route-id="@campaign.Id">Usuń</a>
                 </td>
             </tr>

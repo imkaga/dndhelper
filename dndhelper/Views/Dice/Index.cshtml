@@ -7,8 +7,17 @@
 </header>
 <h1>Rzuć kością!</h1>
 <style>
-    header img {width: 100%;
-                display: block;}
+    header img {
+        width: 100%;
+        display: block;
+    }
+
+    form {
+        margin-top; 40px;
+        width: 25%;
+        margin: 0 auto;
+    }
+
 </style>
 
 <form method="post" asp-action="RollDice">
@@ -23,7 +32,7 @@
             <option value="20" selected="@(Model.SelectedDice == (DiceType)20)">D20</option>
         </select>
     </div>
-    <button type="submit" class="btn btn-primary">Roll</button>
+    <button type="submit" class="btn btn-primary">Rzut kością!</button>
 </form>
 
 @if (Model.RandomNumber != 0)
