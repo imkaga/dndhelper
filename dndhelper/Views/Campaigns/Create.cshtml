@@ -1,7 +1,9 @@
 ﻿@model dndhelper.Models.Campaign
-header{
-<img src="\images\Elementy_strony\Campaign.jpg" alt"Campaign - header" />}
-<h2>Create Campaign</h2>
+
+
+<img src="\images\Elementy_strony\Campaign.jpg" alt"Campaign - header"/>
+
+<h2>Stwórz nową kampanię</h2>
 
 @using (Html.BeginForm("Create", "Campaigns", FormMethod.Post))
 {
@@ -22,12 +24,12 @@ header{
     </div>
 
     <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary" />
+        <input type="submit" value="Stwórz" class="btn btn-primary" />
     </div>
 }
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Powrót do listy</a>
 </div>
 
 @section Scripts {

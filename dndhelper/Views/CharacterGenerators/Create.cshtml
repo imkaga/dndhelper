@@ -6,14 +6,13 @@
 <header>
     <img src="\images\Elementy_strony\Character_generator.jpg" alt"Character_generator - header" />
 </header>
-<h1>Roll Dice</h1>
 <style>
     header img {
         width: 100%;
         display: block;
     }
 </style>
-<h1>Character Generator</h1>
+<h1>Kreator Postaci: Tworzenie</h1>
 
 @using (Html.BeginForm("Create", "CharacterGenerators", FormMethod.Post))
 {
@@ -55,7 +54,7 @@
     </div>
 
     <div class="form-group">
-        @Html.Label("Remaining Points:")
+        @Html.Label("Pozostałe punkty:")
         <span id="remainingPoints" class="text-success">25</span>
     </div>
 
@@ -63,10 +62,10 @@
         <img id="raceImage" src="" alt="Race Image" />
     </div>
 
-    <input type="submit" value="Create" class="btn btn-primary" onclick="return validatePoints()" />
+    <input type="submit" value="Stwórz postać" class="btn btn-primary" onclick="return validatePoints()" />
 }
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Powrót do listy</a>
 </div>
 
 @section Scripts {

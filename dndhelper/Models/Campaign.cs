@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace dndhelper.Models
@@ -9,6 +10,7 @@ namespace dndhelper.Models
 
         [Required]
         [Remote(action: "IsCampaignNameUnique", controller: "Campaigns", ErrorMessage = "Campaign name cannot repeat.")]
+        [DisplayName("Nazwa kampanii")]
         public string Name { get; set; }
 
         [Required]

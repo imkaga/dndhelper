@@ -10,10 +10,10 @@
         color: white;
     }
 </style>
-<h1>Campaigns!</h1>
+<h1>Lista twoich kampanii</h1>
 
 <p>
-    @Html.ActionLink("Create New Campaign", "Create")
+    @Html.ActionLink("Stwórz nową kampanię", "Create")
 </p>
 
 <table class="table">
@@ -30,12 +30,12 @@
             <tr>
                 <td>@campaign.Name</td>
                 <td>
-                    @Html.ActionLink("View Events", "Index", "Events", new { campaignId = campaign.Id, campaignName = campaign.Name }, null)
+                    @Html.ActionLink("Wyświetl wydarzenia", "Index", "Events", new { campaignId = campaign.Id, campaignName = campaign.Name }, null)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@campaign.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@campaign.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@campaign.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@campaign.Id">Edytuj</a> |
+                    <a asp-action="Details" asp-route-id="@campaign.Id">Szczegóły</a> |
+                    <a asp-action="Delete" asp-route-id="@campaign.Id">Usuń</a>
                 </td>
             </tr>
         }
